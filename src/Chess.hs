@@ -1,12 +1,9 @@
-module Main where
-
-import Data.List (sortBy)
+module Chess where
 
 import qualified Data.Map.Strict as M
 
+import Data.List (sortBy)
 
-main :: IO ()
-main = putStrLn "Hello, Haskell!"
 
 data Piece = Piece Color PieceType
     deriving (Show, Ord, Eq)
@@ -146,6 +143,11 @@ squareColor (Square (c, r))
     | odd  (enumCols M.! c) && odd r  = Black
     | even (enumCols M.! c) && even r = Black
     | even (enumCols M.! c) && odd r  = White
+    | otherwise = error "squareColor: Impossible"
   where
     enumCols :: M.Map Char Int
     enumCols = M.fromList $ zip columns rows
+
+
+importGame :: String -> IO Board
+importGame = undefined
